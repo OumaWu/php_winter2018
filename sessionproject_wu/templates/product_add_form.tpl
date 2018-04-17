@@ -32,7 +32,7 @@
                   <input type="text" name="description" id="description" size="100" /><br />
                   <label for="image">Image</label><br />
                   <input type="file" name="image" id="image" /><br />
-                  <input type="submit" name="submit" /><br />
+                  <input class="btn btn-primary" type="submit" name="submit" /><br />
               </form>
               {if $view.saved == 1}
                   <div class="alert-success"><p>The product has been saved!</p></div>
@@ -40,7 +40,7 @@
               {if $view.error == 1}
                   <div class="alert-danger"><p>The product has not been created! Please try again.</p></div>
               {/if}
-              <p><br /><br /><a href="/lightmvctest/public/index.php/product/index/">List products</a><br /><br /></p>
+              <p><br /><br /><a href="/sessionproject_wu/public/index.php/product/index/">List products</a><br /><br /></p>
           </div>
         </div> <!-- END pageBody -->
         

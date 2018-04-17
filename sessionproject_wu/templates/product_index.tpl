@@ -52,7 +52,7 @@
                   {/foreach}
               </table>
             </div>
-            <p><a href="/lightmvctest/public/index.php/product/add/">Add new product</a></p>
+            <p><a href="/sessionproject_wu/public/index.php/product/add/">Add new product</a></p>
           </div>
         </div> <!-- END pageBody -->
         

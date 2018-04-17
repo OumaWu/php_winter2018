@@ -1,6 +1,6 @@
 <?php
 
-$baseConfig['appName'] = "Andrew's Shop";
+$baseConfig['appName'] = "Ouma High Tech";
 
 /*$baseConfig['doctrine']['DBAL']['dbm1'] = [
     'driver'   => 'pdo_mysql',
