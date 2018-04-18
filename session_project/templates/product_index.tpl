@@ -52,7 +52,7 @@
                   {/foreach}
               </table>
             </div>
-            <p><a href="/sessionproject_wu/public/index.php/product/add/">Add new product</a></p>
+            <p><a href="/session_project/public/index.php/product/add/">Add new product</a></p>
           </div>
         </div> <!-- END pageBody -->
         
