@@ -12,6 +12,7 @@ try {
 
     $lMVCApp = Ascmvc\Mvc\App::getInstance();
 
+    // $baseConfig was defined in bootstrap.php, config.local.php and config.php
     $lMVCApp->initialize($baseConfig, $serviceManager, $viewObject);
 
     $lMVCApp->run();

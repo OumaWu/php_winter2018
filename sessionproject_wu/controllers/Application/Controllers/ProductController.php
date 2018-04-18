@@ -14,6 +14,7 @@ class ProductController extends Controller {
 
     public static function config(AbstractApp &$app)
     {
+        /* do the same configuration as IndexController does */
         IndexController::config($app);
     }
 

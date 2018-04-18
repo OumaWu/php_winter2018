@@ -37,10 +37,14 @@ class IndexController extends Controller {
                 //"<script>\n\t\tfunction getPage(page) {\n\n\t\t\tvar url = page;\n\n\t\t\tjq( \"#pageBody\" ).load( url );\n\n\t\t}\n\t</script>\n",
         
             ],
+            /*
+                Navibar's links assignment
+            */
             'links' =>
             [
                 'Home' => $baseConfig['URLBASEADDR'] . 'index.php',
-                
+                'Login' => $baseConfig['URLBASEADDR'] . 'index.php/login/index',
+                'Products' => $baseConfig['URLBASEADDR'] . 'index.php/product/index',
             ],
             /*'navMenu' =>
             [
@@ -53,6 +57,7 @@ class IndexController extends Controller {
         $app->appendBaseConfig('view', $view);
     }
 
+    /* method to display the appropriate web page (xxxAction) */
     public function indexAction()
     {
         $this->view['bodyjs'] = 1;

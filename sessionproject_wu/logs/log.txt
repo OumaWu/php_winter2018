@@ -1,0 +1,8 @@
+Syntax error in template "F:\AppServ\www\php_winter2018\sessionproject_wu\templates\login_index.tpl"  on line 1 "{$session_start()}"  - Unexpected "(", expected one of: "}"
+Syntax error in template "F:\AppServ\www\php_winter2018\sessionproject_wu\templates\login_index.tpl"  on line 1 "{$session_start()}"  - Unexpected "(", expected one of: "}"
+Syntax error in template "F:\AppServ\www\php_winter2018\sessionproject_wu\templates\login_index.tpl"  on line 1 "{$session_start()}"  - Unexpected "(", expected one of: "}"
+Syntax error in template "F:\AppServ\www\php_winter2018\sessionproject_wu\templates\login_index.tpl"  on line 1 "{php}$session_start(){/php}" {php}[/php} tags not allowed. Use SmartyBC to enable them
+Syntax error in template "F:\AppServ\www\php_winter2018\sessionproject_wu\templates\login_index.tpl"  on line 1 "{php}session_start(){/php}" {php}[/php} tags not allowed. Use SmartyBC to enable them
+Syntax error in template "F:\AppServ\www\php_winter2018\sessionproject_wu\templates\login_index.tpl"  on line 1 "{php}session_start();{/php}" {php}[/php} tags not allowed. Use SmartyBC to enable them
+Syntax error in template "F:\AppServ\www\php_winter2018\sessionproject_wu\templates\login_index.tpl"  on line 1 "{php}echo "test";{/php}" {php}[/php} tags not allowed. Use SmartyBC to enable them
+Syntax error in template "F:\AppServ\www\php_winter2018\sessionproject_wu\templates\login_index.tpl"  on line 1 "{function}echo "test";{/function}" missing "name" attribute
