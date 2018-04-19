@@ -34,6 +34,8 @@
                   <label for="description">Description</label><br />
                   <input type="text" name="description" id="description" size="100" value="{$product.description}" /><br />
                   <label for="image">Image</label><br />
+                  <img src="/session_project/public/files/{$product.image}?val=234435" alt="{$product.image}" height="350" width="500"
+                       onerror="this.onerror=null;this.src='/session_project/public/files/default.png?val=234435';" />
                   <input type="file" name="image" id="image" /><br />
                   <p>NOTE: If no file is selected, the current file will be kept. </p>
                   <input type="submit" name="submit" /><br />

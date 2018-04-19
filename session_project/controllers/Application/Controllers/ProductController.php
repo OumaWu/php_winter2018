@@ -8,7 +8,7 @@ use Application\Services\CrudProductsService;
 use Application\Services\CrudProductsServiceTrait;
 use Application\Models\Entity\Products;
 
-define('FILE_UPLOAD_PATH', $_SERVER['DOCUMENT_ROOT'] . "/php_winter2018/session_project/files/");
+define('FILE_UPLOAD_PATH', $_SERVER['DOCUMENT_ROOT'] . "/php_winter2018/session_project/public/files/");
 
 class ProductController extends Controller {
 
@@ -78,12 +78,14 @@ class ProductController extends Controller {
 
     public function addAction()
     {
+        session_start();
         $this->view['bodyjs'] = 1;
 
         if (!isset($_SESSION['login']) || empty($_SESSION['login']) || $_SESSION['expire'] < time()) {
             $login = new LoginController($this->app);
             $login->indexAction();
         } else {
+            $_SESSION["expire"] = time() + 30;
             if (!empty($_POST)) {
                 // Would have to sanitize and filter the $_POST array.
                 $productArray['name'] = (string) $_POST['name'];
@@ -111,12 +113,14 @@ class ProductController extends Controller {
 
     public function editAction()
     {
+        session_start();
         $this->view['bodyjs'] = 1;
 
         if (!isset($_SESSION['login']) || empty($_SESSION['login']) || $_SESSION['expire'] < time()) {
             $login = new LoginController($this->app);
             $login->indexAction();
         } else {
+            $_SESSION["expire"] = time() + 30;
             if (!empty($_POST)) {
                 // Would have to sanitize and filter the $_POST array.
                 $productArray['id'] = (string) $_POST['id'];
@@ -173,10 +177,12 @@ class ProductController extends Controller {
 
     public function deleteAction()
     {
+        session_start();
         if (!isset($_SESSION['login']) || empty($_SESSION['login']) || $_SESSION['expire'] < time()) {
             $login = new LoginController($this->app);
             $login->indexAction();
         } else {
+            $_SESSION["expire"] = time() + 30;
             if (!empty($_GET)) {
                 // Would have to sanitize and filter the $_GET array.
                 $id = (int) $_GET['id'];

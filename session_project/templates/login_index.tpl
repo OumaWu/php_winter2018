@@ -24,7 +24,7 @@
           <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           {if empty($smarty.session.login) || $smarty.session.expire < time()}
               <h1>Please Login</h1>
-              {if $smarty.session.expire < time()}
+              {if isset($smarty.session.expire) && $smarty.session.expire < time()}
                 <p>Your session is expired.</p>
               {/if}
               {if $view.session.error == true}
@@ -44,7 +44,6 @@
                   </form>
               </div>
           {else}
-              {$smarty.session.expire = time() + 15}
               <h1>Welcome, Mr.{$smarty.session.login}</h1>
           {/if}
           </div>
