@@ -85,7 +85,9 @@ class ProductController extends Controller {
             $login = new LoginController($this->app);
             $login->indexAction();
         } else {
+
             $_SESSION["expire"] = time() + 30;
+
             if (!empty($_POST)) {
                 // Would have to sanitize and filter the $_POST array.
                 $productArray['name'] = (string) $_POST['name'];
@@ -120,7 +122,9 @@ class ProductController extends Controller {
             $login = new LoginController($this->app);
             $login->indexAction();
         } else {
+
             $_SESSION["expire"] = time() + 30;
+
             if (!empty($_POST)) {
                 // Would have to sanitize and filter the $_POST array.
                 $productArray['id'] = (string) $_POST['id'];
@@ -182,7 +186,9 @@ class ProductController extends Controller {
             $login = new LoginController($this->app);
             $login->indexAction();
         } else {
+
             $_SESSION["expire"] = time() + 30;
+
             if (!empty($_GET)) {
                 // Would have to sanitize and filter the $_GET array.
                 $id = (int) $_GET['id'];

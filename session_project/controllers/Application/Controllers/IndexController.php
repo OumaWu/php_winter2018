@@ -62,6 +62,7 @@ class IndexController extends Controller {
         if (isset($_SESSION['expire']) && $_SESSION['expire'] < time()) {
             unset($view['links']['Logout']);
         }
+
         else {
             $_SESSION["expire"] = time() + 30;
         }

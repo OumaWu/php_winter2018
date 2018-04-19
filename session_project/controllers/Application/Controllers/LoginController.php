@@ -41,7 +41,9 @@ class LoginController extends Controller {
                 if($user != null) {
                     if (password_verify($password, $user->password)) {
                         $_SESSION["login"] = $account;
+
                         $_SESSION["expire"] = time() + 30;
+
                         $this->view['session']['logout'] = false;
                     }
                 } else {
