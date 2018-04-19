@@ -29,6 +29,7 @@ class LoginController extends Controller {
     public function indexAction()
     {
         session_start();
+        /* verify login and password */
         $this->view['session']['error'] = false;
         if (isset($_POST)) {
             if (!empty($_POST['account']) && !empty($_POST['password'])) {
@@ -40,7 +41,7 @@ class LoginController extends Controller {
                 if($user != null) {
                     if (password_verify($password, $user->password)) {
                         $_SESSION["login"] = $account;
-                        $_SESSION["expire"] = time() + 15;
+                        $_SESSION["expire"] = time() + 20;
                         $this->view['session']['logout'] = false;
                     }
                 } else {
@@ -68,13 +69,13 @@ class LoginController extends Controller {
         $index->indexAction();
     }
 
-    public function checkValidSession() {
-        session_start();
-        if (isset($_SESSION['account']) && !empty($_SESSION['account']) && $_SESSION['expire'] >= time()) {
-            return true;
-        }
-        return false;
-    }
+//    public function checkValidSession() {
+//        session_start();
+//        if (isset($_SESSION['account']) && !empty($_SESSION['account']) && $_SESSION['expire'] >= time()) {
+//            return true;
+//        }
+//        return false;
+//    }
 
     private function getUser(string $account = null) {
         if ($account != null)

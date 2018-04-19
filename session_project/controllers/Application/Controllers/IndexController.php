@@ -59,6 +59,10 @@ class IndexController extends Controller {
             $view['links']['Logout'] = $baseConfig['URLBASEADDR'] . 'index.php/login/logout';
         }
 
+        if (isset($_SESSION['expire']) && $_SESSION['expire'] < time()) {
+            unset($view['links']['Logout']);
+        }
+
         $app->appendBaseConfig('view', $view);
     }
 

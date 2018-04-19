@@ -41,7 +41,8 @@
                         <td>{$product.name}</td>
                         <td>{$product.price}</td>
                         <td>{$product.description}</td>
-                        <td>{$product.image}</td>
+                        <td><img src="/session_project/public/files/{$product.image}?val=234435" alt="{$product.image}" height="80" width="80"
+                                 onerror="this.onerror=null;this.src='/session_project/public/files/default.png?val=234435';" /></td>
                         {if !empty($smarty.session.login) && $smarty.session.expire >= time()}
                             <td>
                                 <a href="/session_project/public/index.php/product/edit/?id={$product.id}">Modify</a>
