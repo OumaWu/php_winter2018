@@ -35,7 +35,7 @@
                   <input type="text" name="description" id="description" size="100" value="{$product.description}" /><br />
                   <label for="image">Image</label><br />
                   <input type="file" name="image" id="image" /><br />
-                  <p>NOTE: If no file is selected, the current file will be kept.</p>
+                  <p>NOTE: If no file is selected, the current file will be kept. </p>
                   <input type="submit" name="submit" /><br />
               </form>
               {/foreach}

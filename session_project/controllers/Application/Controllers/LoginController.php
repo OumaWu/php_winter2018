@@ -7,10 +7,9 @@ use \Ascmvc\Mvc\Controller;
 use Application\Services\CrudUsersService;
 use Application\Services\CrudUsersServiceTrait;
 use Application\Models\Entity\Users;
+use PDO;
 
 class LoginController extends Controller {
-
-    use CrudUsersServiceTrait;
 
     public static function config(AbstractApp &$app)
     {
@@ -19,58 +18,57 @@ class LoginController extends Controller {
 
     public function predispatch()
     {
-        $em = $this->serviceManager->getRegisteredService('em1');
+        //$em = $this->serviceManager->getRegisteredService('em1');
 
-        $this->serviceManager->addRegisteredService('CrudUsersService', new CrudUsersService(new Users(), $em));
-
-        $this->setCrudUsers($this->serviceManager->getRegisteredService('CrudUsersService'));
+//        $this->serviceManager->addRegisteredService('CrudUsersService', new CrudUsersService(new Users(), $em));
+//
+//        $this->setCrudUsers($this->serviceManager->getRegisteredService('CrudUsersService'));
     }
 
     /* method to display the appropriate web page (xxxAction) */
     public function indexAction()
     {
-        //$results = $this->getPassword();
+        session_start();
+        $this->view['session']['error'] = false;
+        if (isset($_POST)) {
+            if (!empty($_POST['account']) && !empty($_POST['password'])) {
+                $account = trim((string) $_POST['account']);
+                $password = (string) $_POST['password'];
+                $result = $this->getUser($account);
+                $user = $result->fetch(PDO::FETCH_OBJ);
 
-        /*if (is_object($results)) {
-            $results = [$this->hydrateArray($results)];
-        } else {
-            for ($i = 0; $i < count($results); $i++) {
-                $results[$i] = $this->hydrateArray($results[$i]);
+                if($user != null) {
+                    if (password_verify($password, $user->password)) {
+                        $_SESSION["login"] = $account;
+                        $_SESSION["expire"] = time() + 15;
+                        $this->view['session']['logout'] = false;
+                    }
+                } else {
+                    $this->view['session']['error'] = true;
+                }
             }
-        }*/
-
+        }
         $this->view['bodyjs'] = 1;
-
-//        $this->view['results'] = $results;
 
         $this->viewObject->assign('view', $this->view);
 
         $this->viewObject->display('login_index.tpl');
     }
 
-    public function checkPasswordAction()
-    {
-        if (isset($_POST) && !empty($_POST['account']) && !empty($_POST['password'])) {
+    public function logoutAction() {
+        session_start();
+        session_unset();
+        session_destroy();
 
-            $account = (string) $_POST['account'];
-            $password = (string) $_POST['password'];
-            $user = $this->getCrudUsers()->getUser($account);
+        $this->view['session']['logout'] = true;
 
-            if ($user != null) {
-                $truePassword = $user->getPassword();
-                if (password_verify($password, $truePassword)) {
-                    session_start();
-                    $_SESSION['account'] = $_POST['account'];
-                    $_SESSION['expire'] = time() + 10;
-                    echo "<h1>Welcome, Mr.{$_SESSION["account"]}</h1>";
-                    return true;
-                }
-            }
-        }
-        return false;
+        $this->view['bodyjs'] = 1;
+
+        $index = new IndexController($this->app);
+        $index->indexAction();
     }
 
-    public function checkValidSessionAction() {
+    public function checkValidSession() {
         session_start();
         if (isset($_SESSION['account']) && !empty($_SESSION['account']) && $_SESSION['expire'] >= time()) {
             return true;
@@ -78,11 +76,20 @@ class LoginController extends Controller {
         return false;
     }
 
-    /*protected function hydrateArray(Users $object)
-    {
-        $array['account'] = $object->getAccount();
-        $array['password'] = $object->getPassword();
-
-        return $array;
-    }*/
+    private function getUser(string $account = null) {
+        if ($account != null)
+            try {
+                $pdo = new PDO("mysql:host=localhost;dbname=lightmvctestdb", "lightmvcuser", "testpass");
+                $sql = "SELECT * FROM `users` WHERE `account` LIKE '" . $account . "' ORDER BY `account` ASC";
+                $result = $pdo->prepare($sql);
+                $result->execute();
+                return $result;
+            } catch (PDOException $e) {
+                echo "ERROR !!";
+                echo "<pre>";
+                print_r($e);
+                echo "</pre>";
+            }
+        return null;
+    }
 }

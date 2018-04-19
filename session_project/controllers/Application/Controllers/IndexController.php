@@ -43,17 +43,22 @@ class IndexController extends Controller {
             'links' =>
             [
                 'Home' => $baseConfig['URLBASEADDR'] . 'index.php',
-                'Login' => $baseConfig['URLBASEADDR'] . 'index.php/login/index',
                 'Products' => $baseConfig['URLBASEADDR'] . 'index.php/product/index',
+                'Login' => $baseConfig['URLBASEADDR'] . 'index.php/login/index',
+//                'Logout' => $baseConfig['URLBASEADDR'] . 'index.php/login/logout',
             ],
             /*'navMenu' =>
             [
                 'Home' => $baseConfig['URLBASEADDR'] . 'index.php',
                 
             ],*/
-        
         ];
-        
+        session_start();
+
+        if (isset($_SESSION['login'])) {
+            $view['links']['Logout'] = $baseConfig['URLBASEADDR'] . 'index.php/login/logout';
+        }
+
         $app->appendBaseConfig('view', $view);
     }
 

@@ -42,12 +42,14 @@
                         <td>{$product.price}</td>
                         <td>{$product.description}</td>
                         <td>{$product.image}</td>
-                        <td>
-                            <a href="/lightmvctest/public/index.php/product/edit/?id={$product.id}">Modify</a>
-                        </td>
-                        <td>
-                            <a href="/lightmvctest/public/index.php/product/delete/?id={$product.id}">Delete</a>
-                        </td>
+                        {if !empty($smarty.session.login) && $smarty.session.expire >= time()}
+                            <td>
+                                <a href="/session_project/public/index.php/product/edit/?id={$product.id}">Modify</a>
+                            </td>
+                            <td>
+                                <a href="/session_project/public/index.php/product/delete/?id={$product.id}&image={$product.image}">Delete</a>
+                            </td>
+                        {/if}
                     </tr>
                   {/foreach}
               </table>

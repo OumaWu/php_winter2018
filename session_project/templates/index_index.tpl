@@ -22,6 +22,9 @@
         
         <div id="pageBody">
           <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+              {if $view.session.logout == true}
+                <div class="alert-success"><p>You've logged out !</p></div>
+              {/if}
             <h1>Welcome to {$view.appname}!</h1>
             {*<p>You can <a href="/session_project/public/index.php/product/index">view a list of all products</a>!</p>*}
             <p>You can <a href="{$baseConfig['URLBASEADDR']}index.php/product/index">view a list of all products</a>!</p>

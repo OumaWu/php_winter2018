@@ -22,10 +22,16 @@
 
       <div id="pageBody">
           <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          {if !$baseConfig['URLBASEADDR'] + "index.php/login/checkValidSession"}
+          {if empty($smarty.session.login) || $smarty.session.expire < time()}
               <h1>Please Login</h1>
+              {if $smarty.session.expire < time()}
+                <p>Your session is expired.</p>
+              {/if}
+              {if $view.session.error == true}
+                  <div class="alert-danger"><p>Please enter all the necessary information !</p></div>
+              {/if}
               <div style="width: 450px; position: relative; top: 30%; margin-top: 30px;">
-                  <form action="{$baseConfig['URLBASEADDR']}index.php/login/checkPassword" method="post">
+                  <form action="" method="post">
                       <div class="form-group">
                           <label for="account">Account</label>
                           <input type="text" name="account" class="form-control" id="account" placeholder="Enter account">
@@ -37,12 +43,9 @@
                       <button type="submit" class="btn btn-primary">Submit</button>
                   </form>
               </div>
-          {elseif isset($_SESSION['expire']) && $_SESSION['expire'] < time()}
-              <script>alert("Your session is expired")</script>
-              <meta http-equiv="refresh" content="0.2;url=#">
           {else}
-              {$_SESSION['expire'] = time() + 10}
-              <h1>Welcome, Mr.{$_SESSION["account"]}</h1>
+              {$smarty.session.expire = time() + 15}
+              <h1>Welcome, Mr.{$smarty.session.login}</h1>
           {/if}
           </div>
       </div> <!-- END pageBody -->
